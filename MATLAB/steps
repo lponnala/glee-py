@@ -1,0 +1,17 @@
+calculate mean,stdev row-wise
+find rows where mean is positive, take log of mean and stdev for those rows
+pick rows that have finite log-stdev and the corresponding means
+sort xbar values (and stdev values in the same order)
+divide the total number of xbar values into p bins of equal size
+take median (or any specific quantile) of xbar (X), stdev (Y) values in each bin
+keep only finite values of X and Y, ensure they are of equal length
+fit a straight line or cubic polynomial to X,Y (check with matlab)
+identify stdev values that are within 5 stdevs of their mean (not xbar!) for plotting
+overlay plot of the identified points along with the fit curve
+add legend to the plot showing R^2 from curve fit
+
+for adaptive binning, same as above except:
+divide the range of sorted_xbar_values into p equal divisions and identify xbar,stdev values within each of them
+merge the low-signal bins so that the lowest one contains atleast fbL of the proteins
+merge the high-signal bins so that the highest one contains atleast fbH of the proteins
+

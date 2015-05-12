@@ -1,0 +1,68 @@
+
+In [4]: can't invoke "event" command:  application has been destroyed
+    while executing
+"event generate $w <<ThemeChanged>>"
+    (procedure "ttk::ThemeChanged" line 6)
+    invoked from within
+"ttk::ThemeChanged"
+
+------------------------------------------------------------------------------------------------
+
+** Solved by installing a slightly older version of scipy: 0.10.1, instead of the current 0.11
+
+Traceback (most recent call last):
+  File "<string>", line 11, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.stats", line 321, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.stats.stats", line 198, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.stats.distributions", line 14, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 431, in importHook
+    mod = self.doimport(nm, ctx, ctx + '.' + nm)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.optimize", line 146, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.optimize._root", line 17, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.optimize.nonlin", line 118, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.sparse", line 191, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 480, in doimport
+    exec co in mod.__dict__
+  File "U:\Users\VAMS820\MISC\GLEE\Rewrite\glee\build\pyi.win32\gui\out00-PYZ.pyz\scipy.sparse.csgraph", line 146, in <module>
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 386, in importHook
+    mod = _self_doimport(nm, ctx, fqname)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 449, in doimport
+    mod = importfunc(nm)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 248, in getmod
+    mod = owner.getmod(nm)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\archive.py", line 495, in getmod
+    return iu.DirOwner.getmod(self, self.prefix + '.' + nm)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 105, in getmod
+    mod = imp.load_module(nm, fp, attempt, (ext, mode, typ))
+  File "_shortest_path.pyx", line 18, in init scipy.sparse.csgraph._shortest_path (scipy\sparse\csgraph\_shortest_path.c:14235)
+  File "C:\pyinstaller-2.0\PyInstaller\loader\iu.py", line 409, in importHook
+    raise ImportError("No module named %s" % fqname)
+ImportError: No module named scipy.sparse.csgraph._validation
