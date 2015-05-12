@@ -7,11 +7,11 @@ current version (Nov 8, 2012) : [windows (32-bit)](https://docs.google.com/open?
 
 #### Documentation
 
-- [options](docs/options.html) : contains an explanation of input options
-- [format](docs/format.html) : specifies the input data format
+- [options](#options) : contains an explanation of input options
+- [format](#format) : specifies the input data format
 - [template](files/template.xls) : use this to prepare your dataset for analysis
-- [output](docs/output.html) : describes each output file produced by the software
-- [faq](docs/faq.html) : frequently asked questions (and answers)
+- [output](#output) : describes each output file produced by the software
+- [faq](#faq) : frequently asked questions (and answers)
 
 
 #### Description
@@ -44,7 +44,7 @@ If you have questions related to proteomics data and differential expression, co
 
 <hr>
 
-#### Input options
+#### <a name="options"></a>Input options
 
 - file_name = this is the name of the excel spreadsheet, use the button to select it on your computer
 - num_replicates_A = this is the number of replicates in condition A, i.e. the first set of replicates you specify
@@ -59,7 +59,7 @@ If you have questions related to proteomics data and differential expression, co
 - output_id = this specifies the name that will be attached to all output files
 
 
-#### Input data format
+#### <a name="format"></a>Input data format
 
 - All the data must be in the first sheet of the Excel workbook
 - Column headers MUST be specified
@@ -70,7 +70,7 @@ If you have questions related to proteomics data and differential expression, co
 - No blank rows or cells are allowed in the data (please enter 0 for undetected proteins)
 
 
-#### Ouput
+#### <a name="output"></a>Output
 
 GLEE produces a total of 9 output files that deliver all information pertaining to the analysis. In the following notes, "outname" indicates the name that will be attached to all output files, as specified in the input field "output_id". When the analysis is complete, a message will appear below the RUN button indicating the full path to the location of the output files.
 
@@ -102,7 +102,7 @@ outname.log.txt
 - outname.stn_pvalue.png : shows the STN values against the calculated p-values 
 
 
-#### Frequently asked questions (and answers)
+#### <a name="faq"></a>Frequently asked questions (and answers)
 
 Q: I double-clicked the downloaded file, but nothing happens
 <br>
