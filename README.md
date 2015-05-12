@@ -101,6 +101,7 @@ outname.log.txt
 - outname.stn_distr.png : shows a histogram of the signal-to-noise (STN) distribution
 - outname.stn_pvalue.png : shows the STN values against the calculated p-values 
 
+<hr>
 
 #### <a name="faq"></a>Frequently asked questions (and answers)
 
