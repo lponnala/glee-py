@@ -1,0 +1,10 @@
+
+#### Input data format
+
+- All the data must be in the first sheet of the Excel workbook
+- Column headers MUST be specified
+- The first column must contain alpha-numeric protein names (cannot accept just numbers!)
+- Replicates for the first condition (condition A) must appear after the first column, each replicate in a separate column
+- Then the second condition (condition B) replicates must follow in succeeding columns
+- No blank columns are allowed between replicates or between conditions
+- No blank rows or cells are allowed in the data (please enter 0 for undetected proteins)

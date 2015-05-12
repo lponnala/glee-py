@@ -7,17 +7,17 @@ current version (Nov 8, 2012) : [windows (32-bit)](https://docs.google.com/open?
 
 #### Documentation
 
-- [options](https://sites.google.com/site/gleesoftware/options) : contains an explanation of input options
-- [format](https://sites.google.com/site/gleesoftware/format) : specifies the input data format
-- [template](https://sites.google.com/site/gleesoftware/home/template.xls?attredirects=0) : use this to prepare your dataset for analysis
-- [output](https://sites.google.com/site/gleesoftware/output) : describes each output file produced by the software
-- [faq](https://sites.google.com/site/gleesoftware/faq) : frequently asked questions (and answers)
+- [options](docs/options.html) : contains an explanation of input options
+- [format](docs/format.html) : specifies the input data format
+- [template](files/template.xls) : use this to prepare your dataset for analysis
+- [output](docs/output.html) : describes each output file produced by the software
+- [faq](docs/faq.html) : frequently asked questions (and answers)
 
 
 #### Description
 
 
-![ ](glee_gui.jpg)
+![ ](files/glee_gui.jpg)
 
 GLEE conducts a statistical test to identify differentially expressed proteins using (normalized adjusted) spectral count data. 
  

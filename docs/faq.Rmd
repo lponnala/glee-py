@@ -1,0 +1,26 @@
+
+#### Frequently asked questions (and answers)
+
+Q: I double-clicked the downloaded file, but nothing happens
+<br>
+A: Patience! It takes about 1-2 minutes for the software to properly load-up and get started. You should be seeing the user-interface pop up soon.
+
+
+Q: I waited 10 minutes but the software still didn't start up
+<br>
+A: If you're on windows, please re-start your computer and then re-start GLEE. Doing that helped at least one frustrated user, who's now happily back to running GLEE again.
+
+
+Q: How long does the program take to complete the analysis?
+<br>
+A: It depends on the number of proteins you have in your dataset and the number of iterations you specify. During our tests, we used 10,000 iterations on 2000 proteins and it finished in about 2 minutes.
+
+
+Q: How many iterations should I use? Are 1000 iterations enough?
+<br>
+A: We recommend using 10,000 iterations. This is usually enough to simulate a fairly stable STN distribution if you have roughly 2000 to 3000 proteins. If you have more than 5000 proteins, you could reduce the number of iterations to 1000, to ensure that the program finishes running in a reasonable time (about 5 minutes).
+
+ 
+Q: Why don't I get the same p-values when I re-run the program on the same dataset with exactly the same parameters?
+<br>
+A: Since a randomization is performed on each protein, the simulated STN distribution will differ slightly, leading to slight differences in the p-values even when the software is re-run with identical parameters. But the general trends in the results can be expected to be the same from one run to another, i.e. the proteins that have low p-value (which appear at the top of the output file) should continue to have low p-values when re-run with the same parameters. One way to ensure fairly similar p-values from repeated runs is to increase the number of randomizations, say to 10,000 or even 25,000. That would make the resampled STN distribution fairly stable, leading to "close enough" p-values each time the software is run with the same parameters. 
