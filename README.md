@@ -69,6 +69,7 @@ If you have questions related to proteomics data and differential expression, co
 - No blank columns are allowed between replicates or between conditions
 - No blank rows or cells are allowed in the data (please enter 0 for undetected proteins)
 
+<hr>
 
 #### <a name="output"></a>Output
 
