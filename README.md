@@ -1,5 +1,3 @@
-## glee-py
-
 #### Download
 
 current version (Nov 8, 2012) : [windows (32-bit)](https://docs.google.com/open?id=0B8KLKywXy-wKbk9TLWdCOXMxV2c) [linux (32-bit)](https://docs.google.com/open?id=0B8KLKywXy-wKSDNoM1NrRXg4dzg)
