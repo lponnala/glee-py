@@ -1,16 +1,12 @@
 
-// Errors //
-
-added to PATH
-	C:\Users\Lalit\Miniconda\Lib\site-packages\pywin32_system32
-
 // To make a new executable //
 
 download and install python and all packages used in the script
-	conda install pkg-name
-	numpy=1.7.0
-	scipy=0.11.0
-	matplotlib=1.3.1
+	conda install pkg-name.
+	be sure to install the versions specified below, because pyinstaller hooks are available only for these versions
+		conda install numpy=1.7.0
+		conda install scipy=0.11.0
+		conda install matplotlib=1.3.1
 check if the gui script is working
 	python gui.py
 download and install pyinstaller
