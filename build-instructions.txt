@@ -1,19 +1,16 @@
 
-Installation steps on Windows:
-1. Download the compressed .tar.gz file and extract its contents : http://www.pyinstaller.org/
-2. Install PyWin32 : http://sourceforge.net/projects/pywin32/files/
+// To make a new executable //
 
-The folder pyinstaller-2.0 has been copied to C:\ for easier use (and to avoid deeply nested folders, as the documentation advises)
-Adding "C:\pyinstaller-2.0" to my windows PATH is *not* necessary
-
-Getting it up and running has been fairly easy, here's a simple command that'll create an all-in-one executable from a python script:
-U:\Users\VAMS820\CODE\Python>python C:\pyinstaller-2.0\pyinstaller.py --onefile --noconsole --icon=rbc.ico display.py
-
-The script in the above command line (display.py) creates a GUI using Tkinter, and it is rolled into one (somewhat big) executable which
-(1) has the icon as specified (see http://converticon.com/ for creating an icon out of a regular image)
-(2) doesn't pop up the windows console when double-clicked
-
-Some other options you might want to use on the above command line:
+download and install python and all packages used in the script
+	conda install pkg-name
+check if the gui script is working
+	python gui.py
+download and install pyinstaller
+	conda install pyinstaller
+	conda install pywin32
+run pyinstaller to generate the stand-alone GUI
+	pyinstaller --onefile --noconsole gui.py
+some other options you might want to use on the above command line:
 	--clean : remove temp files before building
 	--name : to assign a name to the created executable file
 	--runtime-hook : code to set up special features of the runtime environment
