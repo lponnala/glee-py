@@ -1,4 +1,9 @@
 
+// Errors //
+
+added to PATH
+	C:\Users\Lalit\Miniconda\Lib\site-packages\pywin32_system32
+
 // To make a new executable //
 
 download and install python and all packages used in the script

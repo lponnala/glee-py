@@ -7,11 +7,16 @@ a = Analysis(['gui.py'],
 pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,
+          exclude_binaries=True,
           name='gui.exe',
           debug=False,
           strip=None,
           upx=True,
-          console=False )
+          console=True )
+coll = COLLECT(exe,
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=None,
+               upx=True,
+               name='gui')
