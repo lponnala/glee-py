@@ -130,3 +130,4 @@ A: We recommend using 10,000 iterations. This is usually enough to simulate a fa
 Q: Why don't I get the same p-values when I re-run the program on the same dataset with exactly the same parameters?
 <br>
 A: Since a randomization is performed on each protein, the simulated STN distribution will differ slightly, leading to slight differences in the p-values even when the software is re-run with identical parameters. But the general trends in the results can be expected to be the same from one run to another, i.e. the proteins that have low p-value (which appear at the top of the output file) should continue to have low p-values when re-run with the same parameters. One way to ensure fairly similar p-values from repeated runs is to increase the number of randomizations, say to 10,000 or even 25,000. That would make the resampled STN distribution fairly stable, leading to "close enough" p-values each time the software is run with the same parameters. 
+
