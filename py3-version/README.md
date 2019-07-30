@@ -3,5 +3,4 @@ A standalone GUI built in python3 for GLEE.
 
 Notes:
 - GUI to use wxPython4
-- Standalone to be built using pyinstaller
-
+- Standalone to be built using [PyOxidizer](https://pyoxidizer.readthedocs.io/en/latest/)
