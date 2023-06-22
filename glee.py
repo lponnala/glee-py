@@ -12,7 +12,7 @@ def stn_pval_plots(stn_pval, out_file):
     None
 
 
-def get_p_vals(model_stn, iter, model_stn_dist):
+def get_pvals(model_stn, iter, model_stn_dist):
     None
 
 
@@ -36,7 +36,7 @@ def calc_stn_pval(dat, model, num_iter):
     assert np.isfinite(model_stn).all(), "model_stn: contains non-finite values"
     # calculate null distribution of model_stn using the baseline (i.e. best fit) condition
     stn_distrib = get_stn_distrib(dat[bestc], nA=dat['A'].shape[1], nB=dat['B'].shape[1], iter=num_iter, xbar0_replace=xbar.min()[bestc], best_model=bestm)
-    p_value = get_p_vals(model_stn, num_iter,stn_distrib)
+    p_value = get_pvals(model_stn, num_iter, stn_distrib)
     assert np.isfinite(p_value).all(), "p_value: contains non-finite values"
     return {'model_stn': model_stn, 'p_value': p_value}
 
