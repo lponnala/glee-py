@@ -20,12 +20,6 @@ def get_stn_distrib(A, nA, nB, iter, xbar0_replace, best_model):
     None
 
 
-def replace_zeros(x):
-    x = x.copy()
-    x.loc[x == 0] = x[x > 0].min()
-    return x
-
-
 def calc_stn_pval(dat, model, num_iter):
     bestc = max(model, key=lambda k: model[k]['adjRsq'])
     bestm = model[bestc]
@@ -35,10 +29,17 @@ def calc_stn_pval(dat, model, num_iter):
     model_stn = (xbar['B'] - xbar['A']) / (np.exp(bestm['model'].predict(np.log(xbar['A']).rename('xbar_log'))) + np.exp(bestm['model'].predict(np.log(xbar['B']).rename('xbar_log'))))
     assert np.isfinite(model_stn).all(), "model_stn: contains non-finite values"
     # calculate null distribution of model_stn using the baseline (i.e. best fit) condition
-    stn_distrib = get_stn_distrib(dat[bestc], nA=dat['A'].shape[1], nB=dat['B'].shape[1], iter=num_iter, xbar0_replace=xbar.min()[bestc], best_model=bestm)
+    nA, nB = tuple(dat[k].shape[1] for k in dat)
+    stn_distrib = get_stn_distrib(dat[bestc], nA=nA, nB=nB, iter=num_iter, xbar0_replace=xbar.min()[bestc], best_model=bestm)
     p_value = get_pvals(model_stn, num_iter, stn_distrib)
     assert np.isfinite(p_value).all(), "p_value: contains non-finite values"
     return {'model_stn': model_stn, 'p_value': p_value}
+
+
+def replace_zeros(x):
+    x = x.copy()
+    x.loc[x == 0] = x[x > 0].min()
+    return x
 
 
 def model_fit_plots(model, file=None):
