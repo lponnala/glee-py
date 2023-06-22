@@ -1,5 +1,5 @@
 
-# Links to R code
+# Links to R code from which this python version has been created
 # https://github.com/lponnala/omics/blob/main/2020-07-06/Rscript.R
 # https://github.com/lponnala/omics/blob/main/2020-07-06/glee-funcs.R
 
@@ -25,7 +25,6 @@ dat = {'A': D.iloc[:,1:(1+nA)], 'B': D.iloc[:,(1+nA):(1+nA+nB)]}
 model = glee.fit_model(dat, fit_type=fit_type, num_pts=num_pts, num_std=num_std)
 glee.model_fit_plots(model, file=fitplots_file)
 
-best_model = model[max(model, key=lambda k: model[k]['adjRsq'])]
 
 # list final p-values in the same order as D
 # TODO
