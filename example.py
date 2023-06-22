@@ -24,7 +24,7 @@ assert D.shape[1] == (1+nA+nB), "data: incorrect number of columns"
 dat = {'A': D.iloc[:,1:(1+nA)], 'B': D.iloc[:,(1+nA):(1+nA+nB)]}
 model = glee.fit_model(dat, fit_type=fit_type, num_pts=num_pts, num_std=num_std)
 glee.model_fit_plots(model, file=fitplots_file)
-
+glee.calc_stn_pval(dat, model, num_iter)
 
 # list final p-values in the same order as D
 # TODO
