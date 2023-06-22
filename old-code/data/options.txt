@@ -1,0 +1,12 @@
+file_name = wt-s.xls
+num_replicates_A = 3
+num_replicates_B = 3
+num_bins = 22
+merge_low = 0
+merge_high = 0
+bin_choice = adaptive
+fit_type = cubic
+fit_quantile = 0.5
+num_iterations = 10000
+fdr_level = 0.05
+output_id = WT_clpS_GLEE
