@@ -8,12 +8,12 @@ download and install python and all packages used in the script
 		conda install scipy=0.11.0
 		conda install matplotlib=1.3.1
 check if the gui script is working
-	python glee.py
+	python glee_gui.py
 download and install pyinstaller
 	conda install pyinstaller
 	conda install pywin32
 run pyinstaller to generate the stand-alone GUI
-	pyinstaller --onefile --noconsole glee.py
+	pyinstaller --onefile --noconsole glee_gui.py
 some other options you might want to use on the above command line:
 	--clean : remove temp files before building
 	--name : to assign a name to the created executable file
