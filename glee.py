@@ -17,12 +17,17 @@ def get_pvals(model_stn, num_iter, model_stn_dist):
 
 
 def get_stn_distrib(X, nA, nB, num_iter, xbar0_replace, bestm):
-    i=10
-    df = pd.DataFrame({
-        'xbarA': X.iloc[i].sample(n=nA*num_iter, replace=True).values.reshape(num_iter, nA).mean(axis=1),
-        'xbarB': X.iloc[i].sample(n=nB*num_iter, replace=True).values.reshape(num_iter, nB).mean(axis=1)
-    }).applymap(lambda x: xbar0_replace if x == 0 else x)
-    df['model_stn_dist'] = (df['xbarA'] - df['xbarB']) / (np.exp(bestm.predict(np.log(df['xbarA']).rename('xbar_log'))) + np.exp(bestm.predict(np.log(df['xbarB']).rename('xbar_log'))))
+    XbarStar = []
+    for i in range(X.shape[0]):
+        df = pd.DataFrame({
+            'xbarA': X.iloc[i].sample(n=nA*num_iter, replace=True).values.reshape(num_iter, nA).mean(axis=1),
+            'xbarB': X.iloc[i].sample(n=nB*num_iter, replace=True).values.reshape(num_iter, nB).mean(axis=1)
+        }).applymap(lambda x: xbar0_replace if x == 0 else x)
+        df['model_stn_dist'] = (df['xbarA'] - df['xbarB']) / (np.exp(bestm.predict(np.log(df['xbarA']).rename('xbar_log'))) + np.exp(bestm.predict(np.log(df['xbarB']).rename('xbar_log'))))
+        XbarStar.append(df)
+    XbarStar = pd.concat(XbarStar, axis=0)
+    assert np.isfinite(XbarStar['model_stn_dist']).all(), "model_stn_dist contains non-finite values"
+    return XbarStar['model_stn_dist']
 
 
 def calc_stn_pval(dat, model, num_iter):
