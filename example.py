@@ -34,6 +34,7 @@ glee.stn_pval_plots(stn_pval, file=stnpvals_file)
 tab = pd.concat(stn_pval.values(), axis=1, keys=stn_pval.keys()).assign(protein_id=proteins)
 tab.to_csv(output_file)
 
+# compare to previous output
 res = pd.read_csv(f"https://raw.githubusercontent.com/lponnala/omics/main/2020-07-06/glee_{tag}-results.csv")
 df = pd.merge(tab, res, on='protein_id', how='outer')
 assert not df.isna().any().any(), "tab+res: check merge"
