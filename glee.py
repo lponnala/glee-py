@@ -7,9 +7,8 @@ from statsmodels.distributions.empirical_distribution import ECDF
 
 def stn_pval_plots(stn_pval, file=None):
     _,axs = plt.subplots(nrows=1, ncols=2, figsize=(8,4))
-    df = pd.concat(stn_pval.values(), axis=1, keys=stn_pval.keys())
-    df.plot(kind='scatter', x='model_stn', y='p_value', xlabel='STN', ylabel='p-value', title='P-value distribution', ax=axs[0])
-    df.sort_values(by='model_stn').assign(protein=lambda X: range(1,df.shape[0]+1)).plot(kind='scatter', x='protein', y='model_stn', ylabel='STN', title='STN', ax=axs[1])
+    stn_pval.plot(kind='scatter', x='model_stn', y='p_value', xlabel='STN', ylabel='p-value', title='P-value distribution', ax=axs[0])
+    stn_pval.sort_values(by='model_stn').assign(protein=lambda X: range(1,stn_pval.shape[0]+1)).plot(kind='scatter', x='protein', y='model_stn', ylabel='STN', title='STN', ax=axs[1])
     plt.tight_layout()
     if file is None:
         plt.show()
@@ -31,13 +30,14 @@ def calc_stn_pval(dat, model, num_iter):
     model_stn_dist = get_stn_distrib(X=dat[bestc], nA=nA, nB=nB, num_iter=num_iter, xbar0_replace=xbar.min()[bestc], bestm=bestm)
     p_value = get_pvals(model_stn, model_stn_dist)
     assert np.isfinite(p_value).all(), "p_value: contains non-finite values"
-    return {'model_stn': model_stn, 'p_value': p_value}
+    stn_pval = pd.concat([model_stn.rename('model_stn'), p_value.rename('p_value')], axis=1)
+    return stn_pval
 
 
 def get_pvals(model_stn, model_stn_dist):
     F = ECDF(model_stn_dist)
-    ep = [F(s) for s in model_stn]
-    p_value = pd.Series([2*min(p,1-p) for p in ep])
+    ep = {i: F(s) for i,s in model_stn.items()}
+    p_value = pd.Series({i: 2*min(p,1-p) for i,p in ep.items()})
     return p_value
 
 
