@@ -6,7 +6,7 @@
 import pandas as pd
 import glee
 
-tag = ['wt-k1','k1-k6','wt-k6'][0]
+tag = ['wt-k1','k1-k6','wt-k6'][2]
 data_file = f"https://raw.githubusercontent.com/lponnala/omics/main/2020-07-06/data_glee_{tag}.csv"
 fitplots_file = f"output/glee_{tag}_fitplots.png"
 stnpvals_file = f"output/glee_{tag}_stnpval.png"
@@ -38,6 +38,7 @@ res = pd.read_csv(f"https://raw.githubusercontent.com/lponnala/omics/main/2020-0
 df = pd.merge(stn_pval, res.set_index('protein_id'), left_index=True, right_index=True)
 assert not df.isna().any().any(), "stn_pval + res: check merge"
 print((df['p_value'] - df['pVal']).describe())
-top = min(20, df.shape[0])
-top_match = 100*sum(df.sort_values(by='p_value').head(top).index == df.sort_values(by='pVal').head(top).index)/top
-print(f"match among top {top} = {round(top_match)}%")
+top_pct = 40
+top_num = int(df.shape[0]*top_pct/100)
+top_match = 100*sum(df.sort_values(by='p_value').head(top_num).index == df.sort_values(by='pVal').head(top_num).index)/top_num
+print(f"match among top {top_pct}% of proteins (N={top_num}): {round(top_match)}%")
