@@ -9,8 +9,17 @@ def diff_exp_table(stn_pval, Prot, num_digits):
     None
 
 
-def stn_pval_plots(stn_pval, out_file):
-    None
+def stn_pval_plots(stn_pval, file=None):
+    _,axs = plt.subplots(nrows=1, ncols=2, figsize=(8,4))
+    df = pd.concat(stn_pval.values(), axis=1, keys=stn_pval.keys())
+    df.plot(kind='scatter', x='model_stn', y='p_value', xlabel='STN', ylabel='p-value', title='P-value distribution', ax=axs[0])
+    df.sort_values(by='model_stn').assign(protein=lambda X: range(1,df.shape[0]+1)).plot(kind='scatter', x='protein', y='model_stn', ylabel='STN', title='STN', ax=axs[1])
+    plt.tight_layout()
+    if file is None:
+        plt.show()
+    else:
+        plt.savefig(file)
+    plt.close()
 
 
 def calc_stn_pval(dat, model, num_iter):
