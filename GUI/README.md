@@ -18,7 +18,7 @@ current version (Nov 8, 2012) :
 #### Description
 
 
-![ ](../files/glee_gui.jpg)
+![ ](glee_gui.jpg)
 
 GLEE conducts a statistical test to identify differentially expressed proteins using (normalized adjusted) spectral count data. 
  

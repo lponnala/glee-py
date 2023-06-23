@@ -12,25 +12,30 @@ def stn_pval_plots(stn_pval, out_file):
     None
 
 
-def get_pvals(model_stn, iter, model_stn_dist):
+def get_pvals(model_stn, num_iter, model_stn_dist):
     None
 
 
-def get_stn_distrib(A, nA, nB, iter, xbar0_replace, best_model):
-    None
+def get_stn_distrib(X, nA, nB, num_iter, xbar0_replace, bestm):
+    i=10
+    df = pd.DataFrame({
+        'xbarA': X.iloc[i].sample(n=nA*num_iter, replace=True).values.reshape(num_iter, nA).mean(axis=1),
+        'xbarB': X.iloc[i].sample(n=nB*num_iter, replace=True).values.reshape(num_iter, nB).mean(axis=1)
+    }).applymap(lambda x: xbar0_replace if x == 0 else x)
+    df['model_stn_dist'] = (df['xbarA'] - df['xbarB']) / (np.exp(bestm.predict(np.log(df['xbarA']).rename('xbar_log'))) + np.exp(bestm.predict(np.log(df['xbarB']).rename('xbar_log'))))
 
 
 def calc_stn_pval(dat, model, num_iter):
     bestc = max(model, key=lambda k: model[k]['adjRsq'])
-    bestm = model[bestc]
+    bestm = model[bestc]['model']
     xbar = pd.concat([replace_zeros(model[k]['xbar']).rename(k) for k in model], axis=1)
     # calculate model-based STN
     assert not (xbar < 0).any().any(), "xbar: non-positive values found"
-    model_stn = (xbar['B'] - xbar['A']) / (np.exp(bestm['model'].predict(np.log(xbar['A']).rename('xbar_log'))) + np.exp(bestm['model'].predict(np.log(xbar['B']).rename('xbar_log'))))
+    model_stn = (xbar['B'] - xbar['A']) / (np.exp(bestm.predict(np.log(xbar['A']).rename('xbar_log'))) + np.exp(bestm.predict(np.log(xbar['B']).rename('xbar_log'))))
     assert np.isfinite(model_stn).all(), "model_stn: contains non-finite values"
     # calculate null distribution of model_stn using the baseline (i.e. best fit) condition
     nA, nB = tuple(dat[k].shape[1] for k in dat)
-    stn_distrib = get_stn_distrib(dat[bestc], nA=nA, nB=nB, iter=num_iter, xbar0_replace=xbar.min()[bestc], best_model=bestm)
+    stn_distrib = get_stn_distrib(X=dat[bestc], nA=nA, nB=nB, num_iter=num_iter, xbar0_replace=xbar.min()[bestc], best_model=bestm)
     p_value = get_pvals(model_stn, num_iter, stn_distrib)
     assert np.isfinite(p_value).all(), "p_value: contains non-finite values"
     return {'model_stn': model_stn, 'p_value': p_value}
