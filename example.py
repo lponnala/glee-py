@@ -26,7 +26,6 @@ assert D.shape[0] >= 5, "data: not enough rows"
 assert D.shape[1] == (1+nA+nB), "data: incorrect number of columns"
 
 D = D.set_index(D.columns[0])
-# proteins = D.iloc[:,0]
 dat = {'A': D.iloc[:,:nA], 'B': D.iloc[:,nA:(nA+nB)]}
 model = glee.fit_model(dat, fit_type=fit_type, num_pts=num_pts, num_std=num_std)
 glee.model_fit_plots(model, file=fitplots_file)
