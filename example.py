@@ -25,20 +25,20 @@ assert not D.isna().any().any(), "data: missing values found"
 assert D.shape[0] >= 5, "data: not enough rows"
 assert D.shape[1] == (1+nA+nB), "data: incorrect number of columns"
 
-proteins = D.iloc[:,0]
-dat = {'A': D.iloc[:,1:(1+nA)], 'B': D.iloc[:,(1+nA):(1+nA+nB)]}
+D = D.set_index(D.columns[0])
+# proteins = D.iloc[:,0]
+dat = {'A': D.iloc[:,:nA], 'B': D.iloc[:,nA:(nA+nB)]}
 model = glee.fit_model(dat, fit_type=fit_type, num_pts=num_pts, num_std=num_std)
 glee.model_fit_plots(model, file=fitplots_file)
 stn_pval = glee.calc_stn_pval(dat, model, num_iter)
 glee.stn_pval_plots(stn_pval, file=stnpvals_file)
-tab = pd.concat(stn_pval.values(), axis=1, keys=stn_pval.keys()).assign(protein_id=proteins)
-tab.to_csv(output_file)
+stn_pval.to_csv(output_file)
 
 # compare to previous output
 res = pd.read_csv(f"https://raw.githubusercontent.com/lponnala/omics/main/2020-07-06/glee_{tag}-results.csv")
-df = pd.merge(tab, res, on='protein_id', how='outer')
-assert not df.isna().any().any(), "tab+res: check merge"
+df = pd.merge(stn_pval, res.set_index('protein_id'), left_index=True, right_index=True)
+assert not df.isna().any().any(), "stn_pval + res: check merge"
 print((df['p_value'] - df['pVal']).describe())
 top = min(20, df.shape[0])
-top_match = 100*sum(df.sort_values(by='p_value').head(top)['protein_id'].values == df.sort_values(by='pVal').head(top)['protein_id'].values)/top
+top_match = 100*sum(df.sort_values(by='p_value').head(top).index == df.sort_values(by='pVal').head(top).index)/top
 print(f"match among top {top} = {round(top_match)}%")
