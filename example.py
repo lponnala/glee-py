@@ -8,9 +8,9 @@ import glee
 
 tag = ['wt-k1','k1-k6','wt-k6'][0]
 data_file = f"https://raw.githubusercontent.com/lponnala/omics/main/2020-07-06/data_glee_{tag}.csv"
-fitplots_file = f"verify/glee_{tag}_fitplots.png"
-stnpvals_file = f"verify/glee_{tag}_stnpval.png"
-output_file = f"verify/glee_{tag}_results.csv"
+fitplots_file = f"output/glee_{tag}_fitplots.png"
+stnpvals_file = f"output/glee_{tag}_stnpval.png"
+output_file = f"output/glee_{tag}_results.csv"
 
 nA = 2
 nB = 2
