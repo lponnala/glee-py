@@ -5,10 +5,6 @@ import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt
 from statsmodels.distributions.empirical_distribution import ECDF
 
-def diff_exp_table(stn_pval, Prot, num_digits):
-    None
-
-
 def stn_pval_plots(stn_pval, file=None):
     _,axs = plt.subplots(nrows=1, ncols=2, figsize=(8,4))
     df = pd.concat(stn_pval.values(), axis=1, keys=stn_pval.keys())

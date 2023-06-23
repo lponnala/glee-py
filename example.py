@@ -29,7 +29,5 @@ model = glee.fit_model(dat, fit_type=fit_type, num_pts=num_pts, num_std=num_std)
 glee.model_fit_plots(model, file=fitplots_file)
 stn_pval = glee.calc_stn_pval(dat, model, num_iter)
 glee.stn_pval_plots(stn_pval, file=stnpvals_file)
-tab = glee.diff_exp_table(stn_pval, proteins, num_digits)
-
-# list final p-values in the same order as D
-# TODO
+tab = pd.concat(stn_pval.values(), axis=1, keys=stn_pval.keys()).assign(proteins=proteins)
+print(tab.sort_values(by='p_value'))
