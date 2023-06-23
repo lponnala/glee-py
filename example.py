@@ -28,7 +28,7 @@ dat = {'A': D.iloc[:,1:(1+nA)], 'B': D.iloc[:,(1+nA):(1+nA+nB)]}
 model = glee.fit_model(dat, fit_type=fit_type, num_pts=num_pts, num_std=num_std)
 glee.model_fit_plots(model, file=fitplots_file)
 stn_pval = glee.calc_stn_pval(dat, model, num_iter)
-stn_pval_plots = glee.stn_pval_plots(stn_pval, out_file=stnpvals_file)
+glee.stn_pval_plots(stn_pval, file=stnpvals_file)
 tab = glee.diff_exp_table(stn_pval, proteins, num_digits)
 
 # list final p-values in the same order as D
