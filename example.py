@@ -6,7 +6,7 @@
 import pandas as pd
 import glee
 
-tag = ['wt-k1','k1-k6','wt-k6'][2]
+tag = ['wt-k1','k1-k6','wt-k6'][1]
 data_file = f"https://raw.githubusercontent.com/lponnala/omics/main/2020-07-06/data_glee_{tag}.csv"
 fitplots_file = f"output/glee_{tag}_fitplots.png"
 stnpvals_file = f"output/glee_{tag}_stnpval.png"
