@@ -16,7 +16,6 @@ nA = 2
 nB = 2
 fit_type = "cubic"
 num_iter = 10000
-num_digits = 4
 num_pts = 20
 num_std = 5
 
