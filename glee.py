@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt
+from statsmodels.distributions.empirical_distribution import ECDF
 
 def diff_exp_table(stn_pval, Prot, num_digits):
     None
@@ -13,7 +14,11 @@ def stn_pval_plots(stn_pval, out_file):
 
 
 def get_pvals(model_stn, num_iter, model_stn_dist):
-    None
+    F = ECDF(model_stn_dist)
+    ep = [F(s) for s in model_stn]
+    p_value = [2*min(p,1-p) for p in ep]
+    assert np.isfinite(p_value).all(), "p_value: non-finite values found"
+    return p_value
 
 
 def get_stn_distrib(X, nA, nB, num_iter, xbar0_replace, bestm):
@@ -40,8 +45,8 @@ def calc_stn_pval(dat, model, num_iter):
     assert np.isfinite(model_stn).all(), "model_stn: contains non-finite values"
     # calculate null distribution of model_stn using the baseline (i.e. best fit) condition
     nA, nB = tuple(dat[k].shape[1] for k in dat)
-    stn_distrib = get_stn_distrib(X=dat[bestc], nA=nA, nB=nB, num_iter=num_iter, xbar0_replace=xbar.min()[bestc], best_model=bestm)
-    p_value = get_pvals(model_stn, num_iter, stn_distrib)
+    model_stn_dist = get_stn_distrib(X=dat[bestc], nA=nA, nB=nB, num_iter=num_iter, xbar0_replace=xbar.min()[bestc], bestm=bestm)
+    p_value = get_pvals(model_stn, num_iter, model_stn_dist)
     assert np.isfinite(p_value).all(), "p_value: contains non-finite values"
     return {'model_stn': model_stn, 'p_value': p_value}
 
